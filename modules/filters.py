@@ -14,7 +14,7 @@ def _mid():
 
 # ── Lock / Unlock ─────────────────────────────────────────────────────────────
 
-_LOCK_TYPES = ("links", "media", "stickers", "all", "forward", "polls", "photo", "video", "bot", "files", "Inline", "gif", "videonots", "forwardstory", "customemoji", "emoji)
+_LOCK_TYPES = ("links", "media", "stickers", "all", "forward", "polls", "photo", "video", "bot", "files", "Inline", "gif", "videonots", "forwardstory", "customemoji", "emoji")
 
 
 def handle_lock(chat_id: int, user_id: int, text: str):
