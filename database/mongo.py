@@ -39,3 +39,7 @@ def blacklist_col():
 
 def filters_col():
     return get_db()["filters"]
+
+
+def economy_col():
+    return get_db()["economy"]
