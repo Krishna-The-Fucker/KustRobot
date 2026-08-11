@@ -21,8 +21,8 @@ from config import BOT_TOKEN, WEBHOOK_SECRET, PORT, BOT_NAME
 from utils.api import api_request
 from utils.helpers import check_rate_limit
 
-# Modules
-from modules import admin, greetings, rules, filters, notes, blacklist, pins, fun, misc
+# Modules (Economy module included)
+from modules import admin, greetings, rules, filters, notes, blacklist, pins, fun, misc, economy
 
 logging.basicConfig(
     level=logging.INFO,
@@ -153,6 +153,22 @@ def _handle_command(chat_id: int, user_id: int, text: str, message: dict):
     elif cmd == "getadmins":
         admin.handle_getadmins(chat_id, user_id)
 
+    # ── Economy Commands ──
+    elif cmd in ("bal", "cash", "balance"):
+        economy.handle_balance(chat_id, user_id, text)
+    elif cmd == "gems":
+        economy.handle_gems(chat_id, user_id, text)
+    elif cmd == "daily":
+        economy.handle_daily(chat_id, user_id, text)
+    elif cmd == "kil":
+        economy.handle_kil(chat_id, user_id, text)
+    elif cmd == "rob":
+        economy.handle_rob(chat_id, user_id, text)
+    elif cmd == "pay":
+        economy.handle_pay(chat_id, user_id, text)
+    elif cmd == "leaderboard":
+        economy.handle_leaderboard(chat_id, user_id, text)
+
     # ── Greetings / Captcha ──
     elif cmd == "setwelcome":
         greetings.handle_setwelcome(chat_id, user_id, text)
@@ -280,6 +296,13 @@ def set_bot_commands():
         {"command": "unban", "description": "Unban a user"},
         {"command": "promote", "description": "Promote user to admin"},
         {"command": "demote", "description": "Demote admin"},
+        {"command": "bal", "description": "Check cash & gems balance"},
+        {"command": "gems", "description": "Check gems balance"},
+        {"command": "daily", "description": "Claim daily reward"},
+        {"command": "kil", "description": "Work/Kill to earn rewards"},
+        {"command": "rob", "description": "Rob someone's cash"},
+        {"command": "pay", "description": "Transfer cash to another user"},
+        {"command": "leaderboard", "description": "Group or Global leaderboard"},
         {"command": "pin", "description": "Pin a message"},
         {"command": "unpin", "description": "Unpin a message"},
         {"command": "purge", "description": "Purge messages"},
